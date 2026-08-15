@@ -1,0 +1,721 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+
+:root {
+  --paper: #FAF3E7;
+  --paper-alt: #F1E6D3;
+  --ink: #2E2620;
+  --ink-soft: #5A4F42;
+  --wine: #7A2E38;
+  --wine-deep: #5C2129;
+  --wood: #B5793E;
+  --gold: #C9A46C;
+  --sage: #5C6B4F;
+  --max-width: 1080px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .logo {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.5;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+
+img { max-width: 100%; display: block; }
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ---------- Header ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 243, 231, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(46, 38, 32, 0.08);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.logo {
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.logo-sub {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 500;
+  font-size: 0.72em;
+  color: var(--wine);
+  margin-left: 0.5em;
+  vertical-align: middle;
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+  font-size: 0.94rem;
+}
+
+nav a {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+nav a.active,
+nav a:hover {
+  color: var(--wine);
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: right 0.25s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  right: 0;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 96px 0 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: var(--wine);
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 4.2vw, 3.1rem);
+  margin-bottom: 22px;
+}
+
+.hero p.lead {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin-bottom: 30px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.arcs-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arcs {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+}
+
+.arcs path {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: draw-arc 1.6s ease forwards;
+}
+
+.arcs path:nth-child(1) { stroke: var(--wine); animation-delay: 0.05s; }
+.arcs path:nth-child(2) { stroke: var(--wood); animation-delay: 0.25s; }
+.arcs path:nth-child(3) { stroke: var(--sage); animation-delay: 0.45s; }
+.arcs path:nth-child(4) { stroke: var(--gold); animation-delay: 0.65s; }
+
+@keyframes draw-arc {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcs path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--wine);
+  color: var(--paper);
+}
+.btn-primary:hover { background: var(--wine-deep); }
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.btn-ghost:hover { border-color: var(--wine); color: var(--wine); }
+
+/* ---------- Sections ---------- */
+section { padding: 72px 0; }
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent 70%);
+  border: none;
+  margin: 0;
+}
+
+.section-head {
+  margin-bottom: 40px;
+  max-width: 60ch;
+}
+
+.section-head .eyebrow { margin-bottom: 10px; }
+
+.section-head h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.section-head p {
+  color: var(--ink-soft);
+  margin-top: 14px;
+}
+
+.section-alt { background: var(--paper-alt); }
+
+/* ---------- Card grid ---------- */
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+.card {
+  background: var(--paper);
+  border: 1px solid rgba(46, 38, 32, 0.1);
+  border-radius: 4px;
+  padding: 28px 24px;
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: var(--wine);
+}
+
+.card p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.part-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--wood);
+  border: 1px solid var(--wood);
+  border-radius: 999px;
+  padding: 3px 12px;
+  margin-bottom: 14px;
+}
+
+/* ---------- Scene cards (活動の一コマ) ---------- */
+.scene-card {
+  background: var(--paper);
+  border-left: 3px solid var(--gold);
+  padding: 22px 24px;
+}
+
+.scene-card .scene-time {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--wood);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.scene-card p {
+  color: var(--ink-soft);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- Testimonial (団員の声) ---------- */
+.quote-card {
+  background: var(--paper-alt);
+  border-radius: 4px;
+  padding: 32px 28px;
+  position: relative;
+}
+
+.quote-mark {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 2.6rem;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.quote-card p.quote-body {
+  color: var(--ink);
+  font-size: 0.98rem;
+  margin: 0 0 16px;
+  line-height: 1.9;
+}
+
+.quote-attr {
+  font-size: 0.85rem;
+  color: var(--wood);
+  display: block;
+}
+
+/* ---------- Photo placeholder ---------- */
+.photo-placeholder {
+  aspect-ratio: 4 / 3;
+  background: var(--paper-alt);
+  border: 1px dashed rgba(46,38,32,0.25);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding: 12px;
+}
+
+/* ---------- CTA banner ---------- */
+.cta-banner {
+  background: var(--wine);
+  color: var(--paper);
+  padding: 64px 0;
+  text-align: center;
+}
+
+.cta-banner h2 {
+  color: var(--paper);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  margin-bottom: 16px;
+}
+
+.cta-banner p {
+  color: rgba(250, 243, 231, 0.85);
+  max-width: 50ch;
+  margin: 0 auto 28px;
+}
+
+.cta-banner .btn-primary {
+  background: var(--paper);
+  color: var(--wine);
+}
+.cta-banner .btn-primary:hover {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* ---------- Steps (flow) ---------- */
+.steps {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgba(46,38,32,0.1);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(46,38,32,0.1);
+}
+
+.step-label {
+  font-family: "Zen Old Mincho", serif;
+  color: var(--gold);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+
+.step h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.step p {
+  color: var(--ink-soft);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- Cycle diagram v2: 6-node biannual (春/秋) cycle ---------- */
+.cyc2-rect-spring { fill: var(--paper); stroke: var(--wine); stroke-width: 3; }
+.cyc2-rect-autumn { fill: var(--paper); stroke: var(--gold); stroke-width: 3; stroke-dasharray: 6 5; }
+
+.cyc2-arrow-solid { fill: none; stroke: var(--wine); stroke-width: 2.5; }
+.cyc2-arrow-dashed { fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-dasharray: 7 6; }
+
+.cyc2-title {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 700;
+  font-size: 23px;
+  text-anchor: middle;
+  fill: var(--ink);
+}
+
+.cyc2-month {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 16px;
+  text-anchor: middle;
+}
+
+.cyc2-month-spring { fill: var(--wine); }
+.cyc2-month-autumn { fill: var(--wood); }
+
+.cyc2-note {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 15px;
+  fill: var(--wood);
+  text-anchor: middle;
+}
+
+.cyc2-center-title {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 21px;
+  text-anchor: middle;
+  fill: var(--ink-soft);
+}
+
+.cyc2-legend {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 15px;
+  fill: var(--ink-soft);
+}
+
+/* ---------- Cycle diagram (活動イメージ) ---------- */
+.cycle-diagram-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.cycle-diagram-img {
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.cycle-diagram {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+}
+
+.cycle-arrow {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2.5;
+}
+
+.cycle-arrow-loop {
+  fill: none;
+  stroke: var(--ink-soft);
+  stroke-width: 2;
+  stroke-dasharray: 7 7;
+  opacity: 0.55;
+}
+
+.cycle-node-1 { fill: var(--wine); }
+.cycle-node-2 { fill: var(--wood); }
+.cycle-node-3 { fill: var(--sage); }
+.cycle-node-4 { fill: var(--gold); }
+
+.cycle-node-ring {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 6;
+}
+
+.cycle-glyph {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 34px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.cycle-glyph-light { fill: var(--paper); }
+.cycle-glyph-dark { fill: var(--ink); }
+
+.cycle-month {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  text-anchor: middle;
+}
+
+.cycle-title {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: middle;
+  fill: var(--ink);
+}
+
+.cycle-month-1, .cycle-title-1-mark { fill: var(--wine); }
+.cycle-month-2 { fill: var(--wood); }
+.cycle-month-3 { fill: var(--sage); }
+.cycle-month-4 { fill: var(--wood); }
+
+.cycle-label-right { text-anchor: start; }
+.cycle-label-left { text-anchor: end; }
+
+.cycle-center {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 19px;
+  text-anchor: middle;
+  fill: var(--ink-soft);
+}
+
+.cycle-loop-label {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 15px;
+  fill: var(--ink-soft);
+  text-anchor: middle;
+}
+
+/* ---------- Timeline (活動イメージ) ---------- */
+.step-wide {
+  grid-template-columns: 132px 1fr;
+}
+
+.step-label.wide {
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.step-sublist {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step-sublist li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.step-sublist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.step-sublist .sub-label {
+  color: var(--wine);
+  font-weight: 500;
+}
+
+.step.step-final {
+  border-bottom: none;
+}
+
+/* ---------- FAQ ---------- */
+.faq-item {
+  border-bottom: 1px solid rgba(46,38,32,0.1);
+  padding: 22px 0;
+}
+
+.faq-item h3 {
+  font-size: 1rem;
+  display: flex;
+  gap: 12px;
+  color: var(--ink);
+}
+
+.faq-item .q-mark {
+  color: var(--wine);
+  font-family: "Zen Old Mincho", serif;
+}
+
+.faq-item p {
+  color: var(--ink-soft);
+  margin: 10px 0 0 28px;
+  font-size: 0.95rem;
+}
+
+/* ---------- Info table ---------- */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--wood);
+}
+
+.info-table th, .info-table td {
+  text-align: left;
+  padding: 16px 12px;
+  font-size: 0.95rem;
+  vertical-align: top;
+  border: 1px solid var(--wood);
+}
+
+.info-table th {
+  width: 140px;
+  color: var(--wood);
+  font-weight: 500;
+  background: rgba(181, 121, 62, 0.08);
+}
+
+/* ---------- Past concert list ---------- */
+.concert-past {
+  border-left: 2px solid var(--gold);
+  padding-left: 24px;
+  margin-bottom: 20px;
+}
+
+.concert-past .concert-date {
+  font-size: 0.85rem;
+  color: var(--wood);
+  letter-spacing: 0.04em;
+}
+
+.concert-past h3 {
+  font-size: 1.05rem;
+  margin: 6px 0 8px;
+}
+
+.concert-past p {
+  color: var(--ink-soft);
+  margin: 0;
+  font-size: 0.93rem;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--ink);
+  color: var(--paper-alt);
+  padding: 56px 0 32px;
+}
+
+.footer-brand {
+  font-family: "Zen Old Mincho", serif;
+  font-size: 1.2rem;
+  color: var(--paper);
+  margin-bottom: 10px;
+}
+
+footer p { color: rgba(241, 230, 211, 0.7); font-size: 0.9rem; }
+
+.footer-links {
+  display: flex;
+  gap: 22px;
+  margin: 20px 0;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.footer-copy {
+  margin-top: 24px;
+  font-size: 0.78rem;
+  color: rgba(241, 230, 211, 0.45);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .arcs-wrap { order: -1; max-width: 220px; margin: 0 auto; }
+  .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr 1fr; }
+  nav { gap: 18px; font-size: 0.88rem; }
+}
+
+@media (max-width: 560px) {
+  .wrap { padding: 0 20px; }
+  .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
+  .step { grid-template-columns: 1fr; gap: 6px; }
+  .header-inner { justify-content: center; text-align: center; }
+  nav { justify-content: center; }
+}
